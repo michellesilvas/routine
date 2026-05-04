@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Rutina Semanal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gym: #1D9E75;
+    --gym-bg: #E1F5EE;
+    --trabajo: #378ADD;
+    --trabajo-bg: #E6F1FB;
+    --contenido: #BA7517;
+    --contenido-bg: #FEF3DC;
+    --arte: #C2437E;
+    --arte-bg: #FBEAF0;
+    --personal: #6B6B68;
+    --personal-bg: #F4F2ED;
+    --bg: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A18;
+    --muted: #7A7A77;
+    --border: #E8E6E1;
+    --accent: #C2437E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 2rem;
+  }
+
+  header {
+    background: #1A1A18;
+    color: #FAFAF8;
+    padding: 2rem 1.25rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0; right: 0;
+    height: 20px;
+    background: var(--bg);
+    border-radius: 20px 20px 0 0;
+  }
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #888880;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 4px;
+  }
+  .header-sub { font-size: 13px; color: #888880; font-weight: 300; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 1rem 1.25rem 0.5rem;
+  }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  .day-tabs {
+    display: flex; overflow-x: auto; gap: 0;
+    padding: 0 1.25rem;
+    margin: 0.75rem 0 0;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab {
+    flex-shrink: 0;
+    font-size: 12px; font-weight: 500;
+    color: var(--muted);
+    padding: 8px 14px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .day-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  .day-content { display: none; padding: 1rem 1.25rem; }
+  .day-content.active { display: block; }
+
+  .day-subtitle {
+    font-size: 11px; color: var(--muted);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .slot {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-bottom: 6px;
+  }
+  .slot-bar { width: 3px; min-height: 32px; border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+  .slot-time { font-size: 10px; color: var(--muted); min-width: 64px; flex-shrink: 0; padding-top: 2px; line-height: 1.3; }
+  .slot-body {}
+  .slot-name { font-size: 13px; font-weight: 500; line-height: 1.3; }
+  .slot-note { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+  .s-gym { background: var(--gym-bg); }
+  .s-gym .slot-bar { background: var(--gym); }
+  .s-gym .slot-name { color: #0A6B4E; }
+
+  .s-trabajo { background: var(--trabajo-bg); }
+  .s-trabajo .slot-bar { background: var(--trabajo); }
+  .s-trabajo .slot-name { color: #0C447C; }
+
+  .s-contenido { background: var(--contenido-bg); }
+  .s-contenido .slot-bar { background: var(--contenido); }
+  .s-contenido .slot-name { color: #7A4C0A; }
+
+  .s-arte { background: var(--arte-bg); }
+  .s-arte .slot-bar { background: var(--arte); }
+  .s-arte .slot-name { color: #8A2B5A; }
+
+  .s-personal { background: var(--personal-bg); }
+  .s-personal .slot-bar { background: var(--personal); }
+  .s-personal .slot-name { color: #3A3A38; }
+
+  .section-title {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500;
+    margin: 1.5rem 1.25rem 0.75rem;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .goals-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 0 1.25rem;
+  }
+  .goal-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+  }
+  .goal-num { font-family: 'DM Serif Display', serif; font-size: 26px; line-height: 1; }
+  .goal-label { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.3; }
+
+  .alarm-list { padding: 0 1.25rem; }
+  .alarm-row {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .alarm-row:last-child { border-bottom: none; }
+  .alarm-time-big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px; color: var(--text);
+    min-width: 62px; flex-shrink: 0; line-height: 1.1;
+  }
+  .alarm-info {}
+  .alarm-name { font-size: 13px; font-weight: 500; line-height: 1.3; }
+  .alarm-note { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .alarm-tag {
+    display: inline-block; margin-top: 5px;
+    font-size: 10px; font-weight: 500; padding: 2px 8px;
+    border-radius: 20px;
+  }
+
+  .sup-list { padding: 0 1.25rem; }
+  .sup-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .sup-row:last-child { border-bottom: none; }
+  .sup-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gym); flex-shrink: 0; margin-top: 5px; }
+  .sup-when { font-size: 11px; color: var(--muted); min-width: 86px; flex-shrink: 0; }
+  .sup-text { font-size: 13px; color: var(--text); line-height: 1.4; }
+
+  .rem-list { padding: 0 1.25rem; }
+  .rem-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 9px 0; border-bottom: 1px solid var(--border);
+  }
+  .rem-row:last-child { border-bottom: none; }
+  .rem-bullet {
+    width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 500;
+  }
+  .rem-text { font-size: 12px; color: var(--text); line-height: 1.5; }
+  .rem-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+  .gym-day-tabs { display: flex; gap: 6px; margin-bottom: 1rem; flex-wrap: wrap; }
+  .gym-day-btn {
+    font-size: 11px; font-weight: 500; padding: 5px 12px;
+    border-radius: 20px; border: 1px solid var(--border);
+    background: var(--card); color: var(--muted); cursor: pointer;
+    transition: all 0.15s;
+  }
+  .gym-day-btn.active { background: var(--gym-bg); color: #0A6B4E; border-color: var(--gym); }
+  .gym-panel { display: none; }
+  .gym-panel.active { display: block; }
+  .gym-header {
+    background: var(--gym-bg); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 12px;
+  }
+  .gym-header-title { font-size: 14px; font-weight: 500; color: #0A6B4E; }
+  .gym-header-sub { font-size: 11px; color: #1D9E75; margin-top: 2px; }
+  .exer-block { margin-bottom: 14px; }
+  .exer-section-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--muted);
+    margin-bottom: 6px; padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .exer-row {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+  }
+  .exer-row:last-child { border-bottom: none; }
+  .exer-num {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    background: var(--gym-bg); color: #0A6B4E;
+    font-size: 11px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .exer-info { flex: 1; }
+  .exer-name { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .exer-sets { font-size: 11px; color: var(--gym); font-weight: 500; margin-top: 1px; }
+  .exer-tip { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .gym-tip-box {
+    background: #FEF3DC; border-radius: 10px;
+    padding: 10px 12px; margin-top: 12px;
+  }
+  .gym-tip-label { font-size: 10px; font-weight: 500; color: #7A4C0A; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .gym-tip-text { font-size: 11px; color: #7A4C0A; line-height: 1.5; }
+
+  .bottom-note {
+    margin: 2rem 1.25rem 0;
+    padding: 14px;
+    background: #1A1A18;
+    border-radius: 14px;
+    color: #FAFAF8;
+  }
+  .bottom-note p { font-size: 12px; line-height: 1.6; color: #AAAAAA; }
+  .bottom-note strong { color: #FAFAF8; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-label">Rutina personal</div>
+  <div class="header-title">Mi semana<br>organizada</div>
+  <div class="header-sub">Gym · Contenido · Arte · Lectura</div>
+</header>
+
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:var(--gym)"></div>Gym</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--trabajo)"></div>Trabajo</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--contenido)"></div>Contenido</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--arte)"></div>Arte / ebook</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--personal)"></div>Personal</div>
+</div>
+
+<div class="day-tabs" id="tabs">
+  <div class="day-tab active" onclick="showDay('lun',this)">Lun</div>
+  <div class="day-tab" onclick="showDay('mar',this)">Mar</div>
+  <div class="day-tab" onclick="showDay('mie',this)">Mié</div>
+  <div class="day-tab" onclick="showDay('jue',this)">Jue</div>
+  <div class="day-tab" onclick="showDay('vie',this)">Vie</div>
+  <div class="day-tab" onclick="showDay('sab',this)">Sáb</div>
+  <div class="day-tab" onclick="showDay('dom',this)">Dom</div>
+  <div class="day-tab" onclick="showDay('obj',this)">Metas</div>
+  <div class="day-tab" onclick="showDay('alar',this)">Alarmas</div>
+  <div class="day-tab" onclick="showDay('gym',this)">Gym</div>
+</div>
+
+<!-- LUNES -->
+<div class="day-content active" id="day-lun">
+  <div class="day-subtitle">Estudio · GRWM maquillaje + OOTD</div>
+  <div class="slot s-personal"><div class="slot-time">6:00 – 6:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Despertar</div><div class="slot-note">Creatina · skincare express · prepara outfit</div></div></div>
+  <div class="slot s-gym"><div class="slot-time">7:00 – 8:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Gym — tren superior</div><div class="slot-note">Proteína al terminar (max 30 min después)</div></div></div>
+  <div class="slot s-trabajo"><div class="slot-time">8:30 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Trabajo + grabación en estudio</div><div class="slot-note">1 GRWM maquillaje · 1 OOTD en pausas libres</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">2:00 – 4:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Edición de videos</div><div class="slot-note">Edita y programa al menos 1 video</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">4:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Arte + ebook</div><div class="slot-note">Junk journal · commonplace book · bocetos</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · apaga pantallas · duerme</div></div></div>
+</div>
+
+<!-- MARTES -->
+<div class="day-content" id="day-mar">
+  <div class="day-subtitle">Casa · Cocina — receta planeada el domingo</div>
+  <div class="slot s-gym"><div class="slot-time">6:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Gym — tren inferior</div><div class="slot-note">Creatina al despertar · proteína post-gym</div></div></div>
+  <div class="slot s-trabajo"><div class="slot-time">8:00 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Trabajo (homeoffice)</div><div class="slot-note">Prepara ingredientes en pausas · alista la cocina</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">2:00 – 4:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Grabación — receta de cocina</div><div class="slot-note">Proceso completo: pesado, mezcla, horneado, detalle</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">4:30 – 6:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Edición del video</div><div class="slot-note">Junk journal si terminas antes</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · dormir</div></div></div>
+</div>
+
+<!-- MIÉRCOLES -->
+<div class="day-content" id="day-mie">
+  <div class="day-subtitle">Estudio · Pintura al óleo + DIY</div>
+  <div class="slot s-gym"><div class="slot-time">6:00 – 8:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Gym + traslado al estudio</div><div class="slot-note">Cardio · core · creatina + proteína</div></div></div>
+  <div class="slot s-trabajo"><div class="slot-time">9:00 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Trabajo desde el estudio</div><div class="slot-note">B-roll y tomas cortas en tiempo libre</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">2:00 – 5:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Pintura al óleo</div><div class="slot-note">Graba timelapse · 1 video recomendación si hay material</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">5:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Ebook + commonplace</div><div class="slot-note">Mínimo 15 min de escritura enfocada</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · dormir</div></div></div>
+</div>
+
+<!-- JUEVES -->
+<div class="day-content" id="day-jue">
+  <div class="day-subtitle">Casa · Edición acumulada + junk journal</div>
+  <div class="slot s-gym"><div class="slot-time">6:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Gym — tren superior</div><div class="slot-note">Creatina + proteína · varía: brazos / espalda</div></div></div>
+  <div class="slot s-trabajo"><div class="slot-time">9:00 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Trabajo (homeoffice)</div><div class="slot-note">Tiempo libre → edita o escribe ebook, no scrollees</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">2:00 – 5:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Edición acumulada</div><div class="slot-note">Subtítulos · hashtags · programa videos del finde</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">5:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Junk journal + journaling</div><div class="slot-note">Recortes · washi tape · escribe tu día</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · dormir</div></div></div>
+</div>
+
+<!-- VIERNES -->
+<div class="day-content" id="day-vie">
+  <div class="day-subtitle">Estudio · Contenido libre + pintura</div>
+  <div class="slot s-gym"><div class="slot-time">6:00 – 8:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Gym + traslado al estudio</div><div class="slot-note">Piernas · full body · creatina + proteína</div></div></div>
+  <div class="slot s-trabajo"><div class="slot-time">9:00 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Trabajo desde el estudio</div><div class="slot-note">GRWM relajado · storytime · recomendaciones en pausas</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">2:00 – 5:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Pintura + grabación</div><div class="slot-note">DIY si está planeado · timelapse del óleo</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">5:00 – 7:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Ebook + descanso</div><div class="slot-note">Cierra la semana con algo escrito · tiempo libre</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre semanal</div><div class="slot-note">Anota 3 logros de la semana · skincare · dormir</div></div></div>
+</div>
+
+<!-- SÁBADO -->
+<div class="day-content" id="day-sab">
+  <div class="day-subtitle">Descanso activo · Grabación opcional</div>
+  <div class="slot s-personal"><div class="slot-time">7:00 – 8:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Mañana relajada</div><div class="slot-note">Creatina · desayuno especial · skincare con calma</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">8:00 – 11:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Grabación opcional</div><div class="slot-note">Cocina diferente · DIY · junk journal filmado</div></div></div>
+  <div class="slot s-contenido"><div class="slot-time">11:00 – 2:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Edición + subir contenido</div><div class="slot-note">Métricas · responde comentarios</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">2:00 en adelante</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Tarde completamente libre</div><div class="slot-note">Sal · socializa · descansa de verdad</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · dormir</div></div></div>
+</div>
+
+<!-- DOMINGO -->
+<div class="day-content" id="day-dom">
+  <div class="day-subtitle">Planeación semanal + reset</div>
+  <div class="slot s-personal"><div class="slot-time">6:30 – 7:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Mañana lenta</div><div class="slot-note">Creatina · skincare con calma · desayuno rico</div></div></div>
+  <div class="slot s-arte"><div class="slot-time">7:30 – 9:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Journaling + planeación</div><div class="slot-note">Qué videos · qué receta · lista ingredientes · lectura · ebook</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">9:00 – 11:00</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Organización</div><div class="slot-note">Ropa · bag para el estudio · suministros de pintura</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">11:00 – 8:00pm</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Tiempo libre real</div><div class="slot-note">Sin pendientes. Recarga para la semana.</div></div></div>
+  <div class="slot s-personal"><div class="slot-time">8:00 – 10:30</div><div class="slot-bar"></div><div class="slot-body"><div class="slot-name">Lectura + cierre</div><div class="slot-note">Skincare nocturno · dormir</div></div></div>
+</div>
+
+<!-- OBJETIVOS -->
+<div class="day-content" id="day-obj">
+  <div class="day-subtitle">Metas semanales + suplementos diarios</div>
+
+  <div class="goals-grid">
+    <div class="goal-card"><div class="goal-num" style="color:var(--gym)">4–5</div><div class="goal-label">días de gym<br>Lun – Vie</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--contenido)">3+</div><div class="goal-label">videos subidos<br>a TikTok</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--arte)">1h</div><div class="goal-label">pintura al óleo<br>mínima</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:#534AB7">2</div><div class="goal-label">días de avance<br>en el ebook</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--muted)">7</div><div class="goal-label">noches de<br>lectura</div></div>
+    <div class="goal-card"><div class="goal-num" style="color:var(--arte)">1</div><div class="goal-label">sesión de<br>junk journal</div></div>
+  </div>
+
+  <div class="section-title">Suplementos diarios</div>
+  <div class="sup-list">
+    <div class="sup-row"><div class="sup-dot"></div><div class="sup-when">Al despertar</div><div class="sup-text">Creatina 5g con agua (todos los días)</div></div>
+    <div class="sup-row"><div class="sup-dot"></div><div class="sup-when">Post-gym</div><div class="sup-text">Proteína en polvo (máx 30 min después)</div></div>
+    <div class="sup-row"><div class="sup-dot"></div><div class="sup-when">Sin gym</div><div class="sup-text">Proteína con el desayuno o la comida</div></div>
+    <div class="sup-row"><div class="sup-dot"></div><div class="sup-when">Todo el día</div><div class="sup-text">Mínimo 2 litros de agua</div></div>
+  </div>
+
+  <div class="section-title">División de contenido</div>
+  <div class="sup-list">
+    <div class="sup-row"><div class="sup-dot" style="background:var(--contenido)"></div><div class="sup-when">Lunes</div><div class="sup-text">1 GRWM maquillaje + 1 OOTD (estudio)</div></div>
+    <div class="sup-row"><div class="sup-dot" style="background:var(--contenido)"></div><div class="sup-when">Martes</div><div class="sup-text">1 receta de cocina (casa)</div></div>
+    <div class="sup-row"><div class="sup-dot" style="background:var(--contenido)"></div><div class="sup-when">Miércoles</div><div class="sup-text">Proceso de pintura / DIY / recomendación</div></div>
+    <div class="sup-row"><div class="sup-dot" style="background:var(--contenido)"></div><div class="sup-when">Viernes</div><div class="sup-text">GRWM · storytime · contenido espontáneo</div></div>
+    <div class="sup-row"><div class="sup-dot" style="background:var(--contenido)"></div><div class="sup-when">Sábado</div><div class="sup-text">Opcional: cocina o junk journal filmado</div></div>
+  </div>
+</div>
+
+<!-- ALARMAS -->
+<div class="day-content" id="day-alar">
+  <div class="day-subtitle">Configúralas en tu celular</div>
+  <div class="alarm-list">
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">5:45</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Despertar — días de estudio</div>
+        <div class="alarm-note">Tiempo para alistarte y trasladarte al estudio</div>
+        <div class="alarm-tag" style="background:var(--contenido-bg);color:#7A4C0A">Lun · Mié · Vie</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">6:00</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Despertar — días de casa</div>
+        <div class="alarm-note">Creatina, skincare, ropa de gym</div>
+        <div class="alarm-tag" style="background:var(--gym-bg);color:#0A6B4E">Mar · Jue</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">6:50</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Sal al gym YA</div>
+        <div class="alarm-note">No hay negociación. La ropa ya está lista.</div>
+        <div class="alarm-tag" style="background:var(--gym-bg);color:#0A6B4E">Lun – Vie</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">8:55</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Trabajo en 5 minutos</div>
+        <div class="alarm-note">Abre la computadora, prepara lo que necesitas</div>
+        <div class="alarm-tag" style="background:var(--trabajo-bg);color:#0C447C">Lun – Vie</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">10:30</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Pausa activa de trabajo</div>
+        <div class="alarm-note">Tiempo libre → graba, edita o escribe. No scrollees.</div>
+        <div class="alarm-tag" style="background:var(--trabajo-bg);color:#0C447C">Lun – Vie</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">2:00</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Termina el trabajo — empieza lo tuyo</div>
+        <div class="alarm-note">Graba, edita o pinta. Sin posponerlo.</div>
+        <div class="alarm-tag" style="background:var(--contenido-bg);color:#7A4C0A">Lun – Vie</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">7:00</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Mañana sábado</div>
+        <div class="alarm-note">Más tranquila. Decide si grabas hoy.</div>
+        <div class="alarm-tag" style="background:var(--arte-bg);color:#8A2B5A">Sábado</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">6:30</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Domingo de planeación</div>
+        <div class="alarm-note">Mañana con intención: journaling y plan de la semana</div>
+        <div class="alarm-tag" style="background:var(--personal-bg);color:#3A3A38">Domingo</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">8:00</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Hora de leer</div>
+        <div class="alarm-note">Cierra pantallas. Skincare nocturno. Libro hasta las 10:30.</div>
+        <div class="alarm-tag" style="background:var(--personal-bg);color:#3A3A38">Todos los días</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">9:30 pm</div>
+      <div class="alarm-info">
+        <div class="alarm-name">Prepara ropa de gym</div>
+        <div class="alarm-note">El truco que elimina excusas para mañana</div>
+        <div class="alarm-tag" style="background:var(--gym-bg);color:#0A6B4E">Dom – Jue</div>
+      </div>
+    </div>
+
+    <div class="alarm-row">
+      <div class="alarm-time-big">10:20</div>
+      <div class="alarm-info">
+        <div class="alarm-name">A dormir en 10 min</div>
+        <div class="alarm-note">Marca tu página. Apaga la luz a las 10:30pm.</div>
+        <div class="alarm-tag" style="background:var(--personal-bg);color:#3A3A38">Todos los días</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Recordatorios de disciplina</div>
+  <div class="rem-list">
+    <div class="rem-row">
+      <div class="rem-bullet" style="background:var(--gym-bg);color:#0A6B4E">1</div>
+      <div><div class="rem-text">Un video imperfecto subido vale más que uno perfecto sin subir.</div></div>
+    </div>
+    <div class="rem-row">
+      <div class="rem-bullet" style="background:var(--arte-bg);color:#8A2B5A">2</div>
+      <div><div class="rem-text">Los tiempos libres del trabajo son para crear, no para scrollear.</div></div>
+    </div>
+    <div class="rem-row">
+      <div class="rem-bullet" style="background:var(--contenido-bg);color:#7A4C0A">3</div>
+      <div><div class="rem-text">Constancia pequeña construye portafolio. 45 min semanales ya es avance.</div></div>
+    </div>
+    <div class="rem-row">
+      <div class="rem-bullet" style="background:var(--personal-bg);color:#3A3A38">4</div>
+      <div><div class="rem-text">Skincare mañana y noche. No es opcional, son 5 minutos.</div></div>
+    </div>
+    <div class="rem-row">
+      <div class="rem-bullet" style="background:#EEEDFE;color:#3C3489">5</div>
+      <div><div class="rem-text">Ebook: aunque sea una sola oración hoy. Ya cuenta.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GYM -->
+<div class="day-content" id="day-gym">
+  <div class="day-subtitle">Rutina completa · Principiante · 5 días/semana · Enfoque pierna y glúteo</div>
+
+  <div class="gym-day-tabs">
+    <button class="gym-day-btn active" onclick="showGym('sup1',this)">Lun — Superior</button>
+    <button class="gym-day-btn" onclick="showGym('a',this)">Mar — Pierna A</button>
+    <button class="gym-day-btn" onclick="showGym('mie',this)">Mié — Cardio</button>
+    <button class="gym-day-btn" onclick="showGym('b',this)">Jue — Pierna B</button>
+    <button class="gym-day-btn" onclick="showGym('sup2',this)">Vie — Superior</button>
+    <button class="gym-day-btn" onclick="showGym('c',this)">Sáb — Pierna C</button>
+    <button class="gym-day-btn" onclick="showGym('tips',this)">Consejos</button>
+  </div>
+
+
+  <!-- LUNES: TREN SUPERIOR 1 -->
+  <div class="gym-panel active" id="gym-sup1">
+    <div class="gym-header">
+      <div class="gym-header-title">Lunes — Tren superior (espalda + bíceps)</div>
+      <div class="gym-header-sub">Lunes · ~50 min · Calentar 5 min</div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Calentamiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Rotaciones de hombro + movilidad de muñecas</div><div class="exer-sets">2 min · movimiento suave</div><div class="exer-tip">Prepara articulaciones antes de jalar peso</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Bloque principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Jalón al pecho en máquina (lat pulldown)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Jala hacia el pecho, no hacia la nuca. Aprieta la espalda abajo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Remo en polea sentada (cable row)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Codos pegados al cuerpo, aprieta escápulas al final del movimiento</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Remo con mancuerna (un brazo)</div><div class="exer-sets">3 series × 12 reps cada lado</div><div class="exer-tip">Apoya rodilla y mano en el banco. Espalda paralela al suelo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Curl de bíceps con mancuernas</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">No balancees el cuerpo. Codos fijos a los lados.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Curl martillo (hammer curl)</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Agarre neutro (pulgares arriba). Trabaja el braquial.</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Finisher</div>
+      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Face pulls en polea alta</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Excelente para salud de hombros y postura. No lo saltes.</div></div></div>
+    </div>
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Nota del día</div>
+      <div class="gym-tip-text">Hoy tu espalda trabaja fuerte — es la base de una postura bonita y ayuda indirectamente al glúteo. Después de este día, mañana toca pierna, así que hidráte bien.</div>
+    </div>
+  </div>
+
+  <!-- DÍA A -->
+  <div class="gym-panel" id="gym-a">
+    <div class="gym-header">
+      <div class="gym-header-title">Día A — Glúteo enfoque posterior</div>
+      <div class="gym-header-sub">Martes · ~50 min · Calentar 5 min antes</div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Calentamiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminata en caminadora o bici</div><div class="exer-sets">5 min velocidad moderada</div><div class="exer-tip">Activa la circulación antes de cargar peso</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Bloque principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Sentadilla con mancuernas</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Pies a lo ancho de hombros, baja despacio (3 seg), rodillas hacia afuera</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Hip thrust en banco (mancuerna o barra)</div><div class="exer-sets">4 series × 15 reps</div><div class="exer-tip">El ejercicio rey para glúteo. Aprieta arriba y aguanta 1 seg.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Peso muerto rumano con mancuernas</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Espalda recta, baja sintiendo el estiramiento en isquiotibiales</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Abducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Movimiento lento y controlado. No uses impulso.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Extensión de cadera en polea baja (kickback)</div><div class="exer-sets">3 series × 15 reps cada pierna</div><div class="exer-tip">Si no hay polea, hazlo con banda elástica</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Finisher (quema final)</div>
+      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Puente de glúteo en el suelo</div><div class="exer-sets">3 series × 20 reps sin descanso</div><div class="exer-tip">Sin peso, solo concentración. Aprieta al máximo arriba.</div></div></div>
+    </div>
+
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Descanso entre series</div>
+      <div class="gym-tip-text">60–90 seg en ejercicios principales. 45 seg en los de aislamiento. Si sientes que puedes hacer más reps fácilmente, sube un poco el peso.</div>
+    </div>
+  </div>
+
+  <!-- DÍA B -->
+  <div class="gym-panel" id="gym-b">
+    <div class="gym-header">
+      <div class="gym-header-title">Día B — Pierna completa + glúteo lateral</div>
+      <div class="gym-header-sub">Jueves · ~50 min · Calentar 5 min antes</div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Calentamiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Sentadillas con peso corporal</div><div class="exer-sets">2 series × 15 reps lentas</div><div class="exer-tip">Activa rodillas, caderas y tobillos antes del bloque fuerte</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Bloque principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Prensa de piernas (máquina)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Pies altos en la plataforma = más glúteo. Baja despacio.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Zancadas (lunges) con mancuernas</div><div class="exer-sets">3 series × 10 reps cada pierna</div><div class="exer-tip">Rodilla trasera casi toca el suelo. Mantén el torso recto.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Sentadilla sumo con mancuerna</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Pies muy abiertos y puntas hacia afuera. Activa glúteo medio.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Aducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Complementa la abducción del día A. Ambas son importantes.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Curl de isquiotibiales en máquina</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Baja de forma controlada, no dejes caer el peso</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Finisher</div>
+      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Clamshell (almeja) en el suelo</div><div class="exer-sets">3 series × 20 reps cada lado</div><div class="exer-tip">Activa el glúteo medio que da forma a los lados. Con o sin banda.</div></div></div>
+    </div>
+
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Progresión semana a semana</div>
+      <div class="gym-tip-text">Las primeras 2 semanas enfócate en la técnica, no en el peso. Semana 3 en adelante, sube 1–2 kg cuando puedas completar todas las reps con buena forma.</div>
+    </div>
+  </div>
+
+
+  <!-- MIÉRCOLES: CARDIO + CORE -->
+  <div class="gym-panel" id="gym-mie">
+    <div class="gym-header">
+      <div class="gym-header-title">Miércoles — Cardio + core</div>
+      <div class="gym-header-sub">Miércoles · ~40 min · Recuperación activa</div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Cardio (20–25 min)</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Caminata inclinada en caminadora</div><div class="exer-sets">20 min · inclinación 10–12% · paso cómodo</div><div class="exer-tip">No corras. Caminar inclinada quema más y no agota las piernas para mañana.</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Core (abdomen y estabilización)</div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Plancha frontal</div><div class="exer-sets">3 series × 30–45 seg</div><div class="exer-tip">Cuerpo recto como tabla. No dejes caer las caderas.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Plancha lateral</div><div class="exer-sets">3 series × 25 seg cada lado</div><div class="exer-tip">Fortalece el oblicuo y estabiliza la cadera</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Crunch bicicleta</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Movimiento lento y controlado. Toca codo con rodilla opuesta.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Dead bug (insecto muerto)</div><div class="exer-sets">3 series × 10 reps cada lado</div><div class="exer-tip">Espalda baja pegada al suelo siempre. Excelente para la zona lumbar.</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Estiramiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">E</div><div class="exer-info"><div class="exer-name">Estiramiento de cadena posterior</div><div class="exer-sets">Isquiotibiales · glúteo · espalda baja</div><div class="exer-tip">Tu cuerpo recupera mejor si estiras después del cardio. Hazlo siempre.</div></div></div>
+    </div>
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Por qué cardio hoy y no mañana</div>
+      <div class="gym-tip-text">El miércoles es recuperación activa entre tus dos sesiones de pierna más fuertes (martes y jueves). El cardio suave y el core no agotan el glúteo — lo dejan listo para el jueves.</div>
+    </div>
+  </div>
+
+
+  <!-- VIERNES: TREN SUPERIOR 2 -->
+  <div class="gym-panel" id="gym-sup2">
+    <div class="gym-header">
+      <div class="gym-header-title">Viernes — Tren superior (pecho + hombros + tríceps)</div>
+      <div class="gym-header-sub">Viernes · ~50 min · Última sesión de la semana</div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Calentamiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Círculos de brazos + rotaciones de hombro</div><div class="exer-sets">2 min · rango completo</div><div class="exer-tip">El hombro es la articulación más vulnerable del tren superior — caliéntalo bien</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Bloque principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Press de pecho con mancuernas (banco plano)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Baja despacio (3 seg), sube en 1 seg. Codos a 45° del cuerpo, no abiertos.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Press de hombros con mancuernas (sentada)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">No arquees la espalda. Core apretado durante todo el movimiento.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Elevaciones laterales con mancuernas</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Brazos ligeramente doblados. No subas más allá del hombro.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Fondos de tríceps en banco</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Espalda pegada al banco, codos atrás. Baja hasta 90° en el codo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Extensión de tríceps en polea (pushdown)</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Codos pegados al cuerpo. Solo mueve el antebrazo.</div></div></div>
+    </div>
+    <div class="exer-block">
+      <div class="exer-section-label">Finisher</div>
+      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Aperturas con mancuernas (banco plano)</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Cierra bien la sesión de pecho. Movimiento amplio y controlado.</div></div></div>
+    </div>
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Última sesión de la semana</div>
+      <div class="gym-tip-text">Terminaste la semana completa. Mañana (sábado) toca la última sesión de pierna C. Hoy come bien, duerme bien y deja que el cuerpo recupere durante la noche.</div>
+    </div>
+  </div>
+
+  <!-- DÍA C -->
+  <div class="gym-panel" id="gym-c">
+    <div class="gym-header">
+      <div class="gym-header-title">Día C — Glúteo + quads énfasis</div>
+      <div class="gym-header-sub">Sábado · ~45 min · Semana de recuperación activa</div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Calentamiento (5 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Bicicleta estática</div><div class="exer-sets">5 min ritmo suave</div><div class="exer-tip">El sábado el cuerpo viene de 2 días de trabajo, calienta bien</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Bloque principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Extensión de cuádriceps en máquina</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Movimiento de calidad. Aguanta 1 seg arriba.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Hip thrust unilateral (una pierna)</div><div class="exer-sets">3 series × 12 reps cada lado</div><div class="exer-tip">Más difícil que el bilateral, pero trabaja más glúteo por lado. Usa tu peso corporal primero.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Sentadilla búlgara con mancuerna</div><div class="exer-sets">3 series × 10 reps cada pierna</div><div class="exer-tip">Pie trasero en banco. Es exigente — empieza sin peso si es necesario.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Abducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Siempre presente en cada sesión para el glúteo medio</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Cardio post-entrenamiento (opcional)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminata inclinada en caminadora</div><div class="exer-sets">15–20 min · inclinación 10–12% · ritmo cómodo</div><div class="exer-tip">Quema grasa sin afectar la recuperación muscular. Excelente para glúteo.</div></div></div>
+    </div>
+
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Estiramiento al terminar (5 min)</div>
+      <div class="gym-tip-text">Paloma en el suelo para glúteo · estiramiento de cuádriceps de pie · estiramiento de isquiotibiales sentada. Hazlos siempre — reduce el dolor de los días siguientes.</div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="gym-panel" id="gym-tips">
+    <div class="gym-header">
+      <div class="gym-header-title">Consejos para principiante</div>
+      <div class="gym-header-sub">Lee esto antes de empezar</div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Reglas base</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Técnica antes que peso</div><div class="exer-tip">Las primeras 2–3 semanas son para aprender el movimiento. El peso viene después. Un movimiento mal hecho no construye glúteo — solo lastima.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Conexión mente-músculo</div><div class="exer-tip">En cada repetición, piensa en el músculo que estás usando. Aprieta el glúteo conscientemente. Esto marca la diferencia en los resultados.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">El dolor muscular es normal, el dolor articular no</div><div class="exer-tip">Sentir los glúteos "quemados" al día siguiente es buena señal. Dolor en rodillas, caderas o espalda baja no es normal — para y corrige la técnica.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Descanso = crecimiento</div><div class="exer-tip">El músculo crece cuando descansas, no cuando entrenas. Por eso 3 días son suficientes al inicio. Los días de tren superior también cuentan como recuperación para pierna.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">La proteína es obligatoria</div><div class="exer-tip">Sin suficiente proteína no hay construcción muscular. Tu shake post-gym no es opcional — es parte del entrenamiento.</div></div></div>
+    </div>
+
+    <div class="exer-block">
+      <div class="exer-section-label">Distribución semanal con tu rutina</div>
+      <div class="exer-row"><div class="exer-num">L</div><div class="exer-info"><div class="exer-name">Lunes — tren superior</div><div class="exer-tip">Pecho, espalda, hombros, brazos. Pierna descansa.</div></div></div>
+      <div class="exer-row"><div class="exer-num">M</div><div class="exer-info"><div class="exer-name">Martes — Día A pierna/glúteo</div><div class="exer-tip">Glúteo posterior. El más fuerte de los tres días.</div></div></div>
+      <div class="exer-row"><div class="exer-num">X</div><div class="exer-info"><div class="exer-name">Miércoles — cardio o tren superior ligero</div><div class="exer-tip">Recuperación activa. No pierna pesada.</div></div></div>
+      <div class="exer-row"><div class="exer-num">J</div><div class="exer-info"><div class="exer-name">Jueves — Día B pierna/glúteo</div><div class="exer-tip">Pierna completa + glúteo lateral.</div></div></div>
+      <div class="exer-row"><div class="exer-num">V</div><div class="exer-info"><div class="exer-name">Viernes — tren superior</div><div class="exer-tip">Brazos, espalda, hombros. Pierna descansa.</div></div></div>
+      <div class="exer-row"><div class="exer-num">S</div><div class="exer-info"><div class="exer-name">Sábado — Día C pierna/glúteo</div><div class="exer-tip">Quads + glúteo. Caminata inclinada opcional.</div></div></div>
+      <div class="exer-row"><div class="exer-num">D</div><div class="exer-info"><div class="exer-name">Domingo — descanso total</div><div class="exer-tip">Planeación, stretching suave si quieres.</div></div></div>
+    </div>
+
+    <div class="gym-tip-box">
+      <div class="gym-tip-label">Cuándo esperar resultados</div>
+      <div class="gym-tip-text">Semanas 1–4: tu sistema nervioso aprende los movimientos, ganas fuerza rápido. Semanas 5–8: empieza el cambio visual. Semana 12 en adelante: resultados claros si la dieta y la constancia están. La clave es no parar.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="bottom-note">
+  <p><strong>Para guardar:</strong> En Safari toca "Compartir" → "Añadir a pantalla de inicio". En Chrome toca los tres puntos → "Guardar en pantalla de inicio". Funciona sin internet.</p>
+</div>
+
+<script>
+function showDay(id, el) {
+  document.querySelectorAll('.day-content').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + id).classList.add('active');
+  el.classList.add('active');
+}
+function showGym(id, el) {
+  document.querySelectorAll('.gym-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.gym-day-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('gym-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
