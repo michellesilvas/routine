@@ -519,229 +519,196 @@
 
 <!-- GYM -->
 <div class="day-content" id="day-gym">
-  <div class="day-subtitle">Rutina completa · Principiante · 5 días/semana · Enfoque pierna y glúteo</div>
+  <div class="day-subtitle">Rutina completa · Principiante · 5 días/semana · Enfoque glúteo · Máx 90 min</div>
 
   <div class="gym-day-tabs">
-    <button class="gym-day-btn active" onclick="showGym('sup1',this)">Lun — Superior</button>
-    <button class="gym-day-btn" onclick="showGym('a',this)">Mar — Pierna A</button>
-    <button class="gym-day-btn" onclick="showGym('mie',this)">Mié — Cardio</button>
-    <button class="gym-day-btn" onclick="showGym('b',this)">Jue — Pierna B</button>
-    <button class="gym-day-btn" onclick="showGym('sup2',this)">Vie — Superior</button>
-    <button class="gym-day-btn" onclick="showGym('c',this)">Sáb — Pierna C</button>
+    <button class="gym-day-btn active" onclick="showGym('lun',this)">Lun — Pecho</button>
+    <button class="gym-day-btn" onclick="showGym('mar',this)">Mar — Espalda</button>
+    <button class="gym-day-btn" onclick="showGym('mie',this)">Mié — Glúteo</button>
+    <button class="gym-day-btn" onclick="showGym('jue',this)">Jue — Hombros</button>
+    <button class="gym-day-btn" onclick="showGym('vie',this)">Vie — Pierna</button>
     <button class="gym-day-btn" onclick="showGym('tips',this)">Consejos</button>
   </div>
 
 
-  <!-- LUNES: TREN SUPERIOR 1 -->
-  <div class="gym-panel active" id="gym-sup1">
+  <!-- LUNES: PECHO + TRÍCEPS -->
+  <div class="gym-panel active" id="gym-lun">
     <div class="gym-header">
-      <div class="gym-header-title">Lunes — Tren superior (espalda + bíceps)</div>
-      <div class="gym-header-sub">Lunes · ~50 min · Calentar 5 min</div>
+      <div class="gym-header-title">Lunes — Pecho + Tríceps</div>
+      <div class="gym-header-sub">Lunes · ~80 min · Máx 90 min</div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Calentamiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Rotaciones de hombro + movilidad de muñecas</div><div class="exer-sets">2 min · movimiento suave</div><div class="exer-tip">Prepara articulaciones antes de jalar peso</div></div></div>
+      <div class="exer-section-label">Movilidad y calentamiento (8–10 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Rotaciones de hombro con brazo extendido</div><div class="exer-sets">2 × 10 cada lado</div><div class="exer-tip">Prepara el manguito rotador antes de empujar peso</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Apertura de pecho con banda o mancuernas ligeras</div><div class="exer-sets">2 × 12</div><div class="exer-tip">Activa la musculatura pectoral antes de cargar</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Lagartijas en pared o de rodillas</div><div class="exer-sets">2 × 10</div><div class="exer-tip">Activa pecho y tríceps de forma suave</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Bloque principal</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Jalón al pecho en máquina (lat pulldown)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Jala hacia el pecho, no hacia la nuca. Aprieta la espalda abajo.</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Remo en polea sentada (cable row)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Codos pegados al cuerpo, aprieta escápulas al final del movimiento</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Remo con mancuerna (un brazo)</div><div class="exer-sets">3 series × 12 reps cada lado</div><div class="exer-tip">Apoya rodilla y mano en el banco. Espalda paralela al suelo.</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Curl de bíceps con mancuernas</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">No balancees el cuerpo. Codos fijos a los lados.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Curl martillo (hammer curl)</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Agarre neutro (pulgares arriba). Trabaja el braquial.</div></div></div>
+      <div class="exer-section-label">Series de aproximación + trabajo principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Press de banca con barra</div><div class="exer-sets">Series de aprox. + 4 × 10</div><div class="exer-tip">Codos a 45° del cuerpo, no abiertos. Baja controlado 3 seg.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Press inclinado con mancuernas</div><div class="exer-sets">3 × 12</div><div class="exer-tip">Banco a 30–45°. Trabaja la parte alta del pecho.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Máquina pec deck (mariposa)</div><div class="exer-sets">3 × 15</div><div class="exer-tip">Movimiento de abrazo. No dejes que los codos queden atrás.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Jalones de tríceps en polea (cuerda)</div><div class="exer-sets">3 × 15</div><div class="exer-tip">Codos pegados al cuerpo. Abre la cuerda al final del movimiento.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Extensión de tríceps sobre la cabeza</div><div class="exer-sets">3 × 12</div><div class="exer-tip">Codos apuntando al techo. No dejes que se abran hacia los lados.</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Finisher</div>
-      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Face pulls en polea alta</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Excelente para salud de hombros y postura. No lo saltes.</div></div></div>
+      <div class="exer-section-label">Cardio (15 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminadora ritmo moderado o elíptica</div><div class="exer-sets">15 min · ritmo cómodo</div><div class="exer-tip">Cierra la sesión con cardio suave para quemar calorías extra</div></div></div>
     </div>
     <div class="gym-tip-box">
       <div class="gym-tip-label">Nota del día</div>
-      <div class="gym-tip-text">Hoy tu espalda trabaja fuerte — es la base de una postura bonita y ayuda indirectamente al glúteo. Después de este día, mañana toca pierna, así que hidráte bien.</div>
+      <div class="gym-tip-text">Hoy empujas. Las primeras semanas enfócate en sentir el pecho trabajar, no en cargar mucho peso. Si el hombro duele, baja el peso y revisa el ángulo de los codos.</div>
     </div>
   </div>
 
-  <!-- DÍA A -->
-  <div class="gym-panel" id="gym-a">
+  <!-- MARTES: ESPALDA + BÍCEPS -->
+  <div class="gym-panel" id="gym-mar">
     <div class="gym-header">
-      <div class="gym-header-title">Día A — Glúteo enfoque posterior</div>
-      <div class="gym-header-sub">Martes · ~50 min · Calentar 5 min antes</div>
+      <div class="gym-header-title">Martes — Espalda + Bíceps</div>
+      <div class="gym-header-sub">Martes · ~80 min · Máx 90 min</div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Calentamiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminata en caminadora o bici</div><div class="exer-sets">5 min velocidad moderada</div><div class="exer-tip">Activa la circulación antes de cargar peso</div></div></div>
+      <div class="exer-section-label">Movilidad y calentamiento (8–10 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Rotación torácica en el suelo</div><div class="exer-sets">2 × 8 cada lado</div><div class="exer-tip">Libera la columna torácica antes de jalar peso</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Remo con banda</div><div class="exer-sets">2 × 15</div><div class="exer-tip">Activa la espalda media y escápulas</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Dislocaciones de hombro con banda o palo</div><div class="exer-sets">2 × 10</div><div class="exer-tip">Agarre ancho, movimiento lento y controlado</div></div></div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Bloque principal</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Sentadilla con mancuernas</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Pies a lo ancho de hombros, baja despacio (3 seg), rodillas hacia afuera</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Hip thrust en banco (mancuerna o barra)</div><div class="exer-sets">4 series × 15 reps</div><div class="exer-tip">El ejercicio rey para glúteo. Aprieta arriba y aguanta 1 seg.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Peso muerto rumano con mancuernas</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Espalda recta, baja sintiendo el estiramiento en isquiotibiales</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Abducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Movimiento lento y controlado. No uses impulso.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Extensión de cadera en polea baja (kickback)</div><div class="exer-sets">3 series × 15 reps cada pierna</div><div class="exer-tip">Si no hay polea, hazlo con banda elástica</div></div></div>
+      <div class="exer-section-label">Series de aproximación + trabajo principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Jalón al pecho en polea (lat pulldown)</div><div class="exer-sets">Series de aprox. + 4 × 10</div><div class="exer-tip">Jala hacia el pecho, no la nuca. Aprieta la espalda abajo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Remo con barra</div><div class="exer-sets">3 × 10</div><div class="exer-tip">Espalda inclinada ~45°. Jala hacia el ombligo, no el pecho.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Remo en polea sentada (cable row)</div><div class="exer-sets">3 × 12</div><div class="exer-tip">Codos pegados al cuerpo. Aprieta escápulas al final.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Curl de bíceps con barra</div><div class="exer-sets">3 × 12</div><div class="exer-tip">No balancees el torso. Codos fijos a los lados.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Curl martillo con mancuernas</div><div class="exer-sets">3 × 12</div><div class="exer-tip">Agarre neutro (pulgares arriba). Trabaja bíceps y braquial.</div></div></div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Finisher (quema final)</div>
-      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Puente de glúteo en el suelo</div><div class="exer-sets">3 series × 20 reps sin descanso</div><div class="exer-tip">Sin peso, solo concentración. Aprieta al máximo arriba.</div></div></div>
+      <div class="exer-section-label">Cardio (15 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminadora o bicicleta ritmo moderado</div><div class="exer-sets">15 min</div><div class="exer-tip">Ritmo cómodo — la espalda ya trabajó bastante hoy</div></div></div>
     </div>
-
     <div class="gym-tip-box">
-      <div class="gym-tip-label">Descanso entre series</div>
-      <div class="gym-tip-text">60–90 seg en ejercicios principales. 45 seg en los de aislamiento. Si sientes que puedes hacer más reps fácilmente, sube un poco el peso.</div>
+      <div class="gym-tip-label">Nota del día</div>
+      <div class="gym-tip-text">Hoy jalas. Una espalda fuerte mejora tu postura y hace que el glúteo se vea mejor. Concéntrate en sentir la espalda trabajar, no los bíceps — ellos son solo el gancho.</div>
     </div>
   </div>
 
-  <!-- DÍA B -->
-  <div class="gym-panel" id="gym-b">
-    <div class="gym-header">
-      <div class="gym-header-title">Día B — Pierna completa + glúteo lateral</div>
-      <div class="gym-header-sub">Jueves · ~50 min · Calentar 5 min antes</div>
-    </div>
-
-    <div class="exer-block">
-      <div class="exer-section-label">Calentamiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Sentadillas con peso corporal</div><div class="exer-sets">2 series × 15 reps lentas</div><div class="exer-tip">Activa rodillas, caderas y tobillos antes del bloque fuerte</div></div></div>
-    </div>
-
-    <div class="exer-block">
-      <div class="exer-section-label">Bloque principal</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Prensa de piernas (máquina)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Pies altos en la plataforma = más glúteo. Baja despacio.</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Zancadas (lunges) con mancuernas</div><div class="exer-sets">3 series × 10 reps cada pierna</div><div class="exer-tip">Rodilla trasera casi toca el suelo. Mantén el torso recto.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Sentadilla sumo con mancuerna</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Pies muy abiertos y puntas hacia afuera. Activa glúteo medio.</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Aducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Complementa la abducción del día A. Ambas son importantes.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Curl de isquiotibiales en máquina</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Baja de forma controlada, no dejes caer el peso</div></div></div>
-    </div>
-
-    <div class="exer-block">
-      <div class="exer-section-label">Finisher</div>
-      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Clamshell (almeja) en el suelo</div><div class="exer-sets">3 series × 20 reps cada lado</div><div class="exer-tip">Activa el glúteo medio que da forma a los lados. Con o sin banda.</div></div></div>
-    </div>
-
-    <div class="gym-tip-box">
-      <div class="gym-tip-label">Progresión semana a semana</div>
-      <div class="gym-tip-text">Las primeras 2 semanas enfócate en la técnica, no en el peso. Semana 3 en adelante, sube 1–2 kg cuando puedas completar todas las reps con buena forma.</div>
-    </div>
-  </div>
-
-
-  <!-- MIÉRCOLES: CARDIO + CORE -->
+  <!-- MIÉRCOLES: GLÚTEO -->
   <div class="gym-panel" id="gym-mie">
     <div class="gym-header">
-      <div class="gym-header-title">Miércoles — Cardio + core</div>
-      <div class="gym-header-sub">Miércoles · ~40 min · Recuperación activa</div>
+      <div class="gym-header-title">Miércoles — Glúteo (día estrella)</div>
+      <div class="gym-header-sub">Miércoles · ~85 min · Máx 90 min</div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Cardio (20–25 min)</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Caminata inclinada en caminadora</div><div class="exer-sets">20 min · inclinación 10–12% · paso cómodo</div><div class="exer-tip">No corras. Caminar inclinada quema más y no agota las piernas para mañana.</div></div></div>
+      <div class="exer-section-label">Activación y movilidad (10–12 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Círculos de cadera en cuatro puntos</div><div class="exer-sets">2 × 10 cada lado</div><div class="exer-tip">Activa la articulación de la cadera antes de cargar</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Abducción de cadera acostada con banda</div><div class="exer-sets">2 × 20</div><div class="exer-tip">Activa el glúteo medio — clave para la forma del glúteo</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Puente de glúteo con banda (peso corporal)</div><div class="exer-sets">2 × 15</div><div class="exer-tip">Aprieta el glúteo arriba y aguanta 2 seg antes de bajar</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Core (abdomen y estabilización)</div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Plancha frontal</div><div class="exer-sets">3 series × 30–45 seg</div><div class="exer-tip">Cuerpo recto como tabla. No dejes caer las caderas.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Plancha lateral</div><div class="exer-sets">3 series × 25 seg cada lado</div><div class="exer-tip">Fortalece el oblicuo y estabiliza la cadera</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Crunch bicicleta</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Movimiento lento y controlado. Toca codo con rodilla opuesta.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Dead bug (insecto muerto)</div><div class="exer-sets">3 series × 10 reps cada lado</div><div class="exer-tip">Espalda baja pegada al suelo siempre. Excelente para la zona lumbar.</div></div></div>
+      <div class="exer-section-label">Series de aproximación + trabajo principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Máquina abductora de cadera</div><div class="exer-sets">2 series de aprox. + 3 × 20</div><div class="exer-tip">Movimiento lento. No uses impulso — el glúteo medio debe trabajar.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Sentadilla búlgara (split squat)</div><div class="exer-sets">1 serie de aprox. + 3 × 10 cada pierna</div><div class="exer-tip">Pie trasero en banco. Baja hasta 90°. Empieza sin peso si es necesario.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Hip thrust con barra</div><div class="exer-sets">1–2 series de aprox. + 4 × 12</div><div class="exer-tip">El ejercicio más importante del día. Aprieta glúteo arriba y aguanta 1 seg.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Kickback en polea baja</div><div class="exer-sets">3 × 15 cada lado</div><div class="exer-tip">Movimiento controlado. Aprieta el glúteo en la extensión máxima.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Peso muerto rumano</div><div class="exer-sets">3 × 10</div><div class="exer-tip">Espalda recta, siente el estiramiento en isquiotibiales al bajar.</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Estiramiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">E</div><div class="exer-info"><div class="exer-name">Estiramiento de cadena posterior</div><div class="exer-sets">Isquiotibiales · glúteo · espalda baja</div><div class="exer-tip">Tu cuerpo recupera mejor si estiras después del cardio. Hazlo siempre.</div></div></div>
+      <div class="exer-section-label">Cardio (15–20 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminata inclinada en caminadora</div><div class="exer-sets">15–20 min · inclinación 10–12%</div><div class="exer-tip">Quema grasa y activa el glúteo sin afectar la recuperación muscular</div></div></div>
     </div>
     <div class="gym-tip-box">
-      <div class="gym-tip-label">Por qué cardio hoy y no mañana</div>
-      <div class="gym-tip-text">El miércoles es recuperación activa entre tus dos sesiones de pierna más fuertes (martes y jueves). El cardio suave y el core no agotan el glúteo — lo dejan listo para el jueves.</div>
+      <div class="gym-tip-label">Día más importante de la semana</div>
+      <div class="gym-tip-text">Este es tu día de glúteo. No lo saltes. El hip thrust es el ejercicio que más resultados da — si solo puedes hacer un ejercicio hoy, que sea ese. Come bien antes y después de esta sesión.</div>
     </div>
   </div>
 
-
-  <!-- VIERNES: TREN SUPERIOR 2 -->
-  <div class="gym-panel" id="gym-sup2">
+  <!-- JUEVES: HOMBROS + CORE -->
+  <div class="gym-panel" id="gym-jue">
     <div class="gym-header">
-      <div class="gym-header-title">Viernes — Tren superior (pecho + hombros + tríceps)</div>
-      <div class="gym-header-sub">Viernes · ~50 min · Última sesión de la semana</div>
+      <div class="gym-header-title">Jueves — Hombros + Core</div>
+      <div class="gym-header-sub">Jueves · ~80 min · Máx 90 min</div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Calentamiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Círculos de brazos + rotaciones de hombro</div><div class="exer-sets">2 min · rango completo</div><div class="exer-tip">El hombro es la articulación más vulnerable del tren superior — caliéntalo bien</div></div></div>
+      <div class="exer-section-label">Activación y movilidad (8–10 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Rotación interna y externa con banda (manguito rotador)</div><div class="exer-sets">2 × 15 cada lado</div><div class="exer-tip">Protege el hombro antes de empujar peso sobre la cabeza</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Elevaciones frontales ligeras</div><div class="exer-sets">2 × 12</div><div class="exer-tip">Peso muy ligero, solo para calentar el deltoides anterior</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Círculos completos de hombro</div><div class="exer-sets">1 × 10 cada dirección</div><div class="exer-tip">Rango de movimiento completo y lento</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Bloque principal</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Press de pecho con mancuernas (banco plano)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">Baja despacio (3 seg), sube en 1 seg. Codos a 45° del cuerpo, no abiertos.</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Press de hombros con mancuernas (sentada)</div><div class="exer-sets">4 series × 12 reps</div><div class="exer-tip">No arquees la espalda. Core apretado durante todo el movimiento.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Elevaciones laterales con mancuernas</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Brazos ligeramente doblados. No subas más allá del hombro.</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Fondos de tríceps en banco</div><div class="exer-sets">3 series × 12 reps</div><div class="exer-tip">Espalda pegada al banco, codos atrás. Baja hasta 90° en el codo.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Extensión de tríceps en polea (pushdown)</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Codos pegados al cuerpo. Solo mueve el antebrazo.</div></div></div>
+      <div class="exer-section-label">Series de aproximación + trabajo principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Press de hombros con mancuernas (sentada)</div><div class="exer-sets">Series de aprox. + 4 × 10</div><div class="exer-tip">Core apretado. No arquees la espalda baja.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Elevaciones laterales con mancuernas</div><div class="exer-sets">4 × 15</div><div class="exer-tip">Brazos ligeramente doblados. No subas más allá del hombro.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Vuelo posterior (rear delt fly)</div><div class="exer-sets">3 × 15</div><div class="exer-tip">Inclina el torso hacia adelante. Abre los brazos como alas.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Plancha frontal</div><div class="exer-sets">3 × 30 seg</div><div class="exer-tip">Cuerpo recto como tabla. No dejes caer las caderas.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Crunch en máquina</div><div class="exer-sets">3 × 20</div><div class="exer-tip">Movimiento controlado. Exhala al contraer.</div></div></div>
+      <div class="exer-row"><div class="exer-num">6</div><div class="exer-info"><div class="exer-name">Plancha lateral</div><div class="exer-sets">3 × 25 seg cada lado</div><div class="exer-tip">Cadera en línea recta. Fortalece el oblicuo y estabiliza la cadera.</div></div></div>
     </div>
     <div class="exer-block">
-      <div class="exer-section-label">Finisher</div>
-      <div class="exer-row"><div class="exer-num">F</div><div class="exer-info"><div class="exer-name">Aperturas con mancuernas (banco plano)</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Cierra bien la sesión de pecho. Movimiento amplio y controlado.</div></div></div>
+      <div class="exer-section-label">Cardio (15 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Elíptica o caminadora ritmo moderado</div><div class="exer-sets">15 min</div><div class="exer-tip">Recuperación activa — mañana toca pierna completa</div></div></div>
     </div>
     <div class="gym-tip-box">
-      <div class="gym-tip-label">Última sesión de la semana</div>
-      <div class="gym-tip-text">Terminaste la semana completa. Mañana (sábado) toca la última sesión de pierna C. Hoy come bien, duerme bien y deja que el cuerpo recupere durante la noche.</div>
+      <div class="gym-tip-label">Nota del día</div>
+      <div class="gym-tip-text">Hombros definidos dan forma al tren superior. El core de hoy también protege tu espalda baja en los hip thrust y sentadillas. No lo saltes aunque parezca "menos importante".</div>
     </div>
   </div>
 
-  <!-- DÍA C -->
-  <div class="gym-panel" id="gym-c">
+  <!-- VIERNES: PIERNA COMPLETA -->
+  <div class="gym-panel" id="gym-vie">
     <div class="gym-header">
-      <div class="gym-header-title">Día C — Glúteo + quads énfasis</div>
-      <div class="gym-header-sub">Sábado · ~45 min · Semana de recuperación activa</div>
+      <div class="gym-header-title">Viernes — Pierna completa</div>
+      <div class="gym-header-sub">Viernes · ~85 min · Máx 90 min</div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Calentamiento (5 min)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Bicicleta estática</div><div class="exer-sets">5 min ritmo suave</div><div class="exer-tip">El sábado el cuerpo viene de 2 días de trabajo, calienta bien</div></div></div>
+      <div class="exer-section-label">Activación y movilidad (10–12 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Movilidad de tobillos y caderas</div><div class="exer-sets">2 min</div><div class="exer-tip">Círculos de tobillo + apertura de cadera en el suelo</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Sentadilla lenta con peso corporal</div><div class="exer-sets">2 × 10</div><div class="exer-tip">Baja en 4 seg. Activa rodillas, caderas y tobillos.</div></div></div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Abducción de pie con banda</div><div class="exer-sets">2 × 15 cada lado</div><div class="exer-tip">Activa el glúteo medio antes de la sentadilla pesada</div></div></div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Bloque principal</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Extensión de cuádriceps en máquina</div><div class="exer-sets">3 series × 15 reps</div><div class="exer-tip">Movimiento de calidad. Aguanta 1 seg arriba.</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Hip thrust unilateral (una pierna)</div><div class="exer-sets">3 series × 12 reps cada lado</div><div class="exer-tip">Más difícil que el bilateral, pero trabaja más glúteo por lado. Usa tu peso corporal primero.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Sentadilla búlgara con mancuerna</div><div class="exer-sets">3 series × 10 reps cada pierna</div><div class="exer-tip">Pie trasero en banco. Es exigente — empieza sin peso si es necesario.</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Abducción de cadera en máquina</div><div class="exer-sets">3 series × 20 reps</div><div class="exer-tip">Siempre presente en cada sesión para el glúteo medio</div></div></div>
+      <div class="exer-section-label">Series de aproximación + trabajo principal</div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Sentadilla libre o en Smith</div><div class="exer-sets">Series de aprox. + 4 × 10</div><div class="exer-tip">Pecho arriba, rodillas hacia afuera. Baja hasta paralelo o más.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Peso muerto rumano</div><div class="exer-sets">3 × 10</div><div class="exer-tip">Siente el estiramiento en isquiotibiales. Espalda recta siempre.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Curl de isquiotibiales en máquina</div><div class="exer-sets">3 × 12</div><div class="exer-tip">Baja controlado — la fase excéntrica es la que más construye músculo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Zancadas con mancuernas</div><div class="exer-sets">3 × 10 cada pierna</div><div class="exer-tip">Rodilla trasera casi toca el suelo. Torso recto.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">Elevaciones de pantorrilla (calf raises)</div><div class="exer-sets">3 × 20</div><div class="exer-tip">Sube en 1 seg, baja en 3 seg. Rango completo de movimiento.</div></div></div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Cardio post-entrenamiento (opcional)</div>
-      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">Caminata inclinada en caminadora</div><div class="exer-sets">15–20 min · inclinación 10–12% · ritmo cómodo</div><div class="exer-tip">Quema grasa sin afectar la recuperación muscular. Excelente para glúteo.</div></div></div>
+      <div class="exer-section-label">Cardio HIIT (15–20 min)</div>
+      <div class="exer-row"><div class="exer-num">C</div><div class="exer-info"><div class="exer-name">HIIT en elíptica o bicicleta</div><div class="exer-sets">30 seg fuerte / 90 seg suave × 8 rondas</div><div class="exer-tip">El HIIT al final de pierna maximiza la quema de grasa. Descansa el fin de semana.</div></div></div>
     </div>
-
     <div class="gym-tip-box">
-      <div class="gym-tip-label">Estiramiento al terminar (5 min)</div>
-      <div class="gym-tip-text">Paloma en el suelo para glúteo · estiramiento de cuádriceps de pie · estiramiento de isquiotibiales sentada. Hazlos siempre — reduce el dolor de los días siguientes.</div>
+      <div class="gym-tip-label">Cierra la semana fuerte</div>
+      <div class="gym-tip-text">Esta es la sesión más exigente de la semana. Come bien antes (carbohidratos + proteína). Después: proteína + descanso. El sábado y domingo son para recuperar — no hagas cardio intenso esos días.</div>
     </div>
   </div>
 
-  <!-- TIPS -->
+  <!-- CONSEJOS -->
   <div class="gym-panel" id="gym-tips">
     <div class="gym-header">
-      <div class="gym-header-title">Consejos para principiante</div>
+      <div class="gym-header-title">Consejos generales</div>
       <div class="gym-header-sub">Lee esto antes de empezar</div>
     </div>
-
     <div class="exer-block">
       <div class="exer-section-label">Reglas base</div>
-      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Técnica antes que peso</div><div class="exer-tip">Las primeras 2–3 semanas son para aprender el movimiento. El peso viene después. Un movimiento mal hecho no construye glúteo — solo lastima.</div></div></div>
-      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Conexión mente-músculo</div><div class="exer-tip">En cada repetición, piensa en el músculo que estás usando. Aprieta el glúteo conscientemente. Esto marca la diferencia en los resultados.</div></div></div>
-      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">El dolor muscular es normal, el dolor articular no</div><div class="exer-tip">Sentir los glúteos "quemados" al día siguiente es buena señal. Dolor en rodillas, caderas o espalda baja no es normal — para y corrige la técnica.</div></div></div>
-      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Descanso = crecimiento</div><div class="exer-tip">El músculo crece cuando descansas, no cuando entrenas. Por eso 3 días son suficientes al inicio. Los días de tren superior también cuentan como recuperación para pierna.</div></div></div>
-      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">La proteína es obligatoria</div><div class="exer-tip">Sin suficiente proteína no hay construcción muscular. Tu shake post-gym no es opcional — es parte del entrenamiento.</div></div></div>
+      <div class="exer-row"><div class="exer-num">1</div><div class="exer-info"><div class="exer-name">Técnica antes que peso</div><div class="exer-tip">Las primeras 2–3 semanas son para aprender el movimiento. El peso viene después. Un movimiento mal hecho no construye músculo — solo lastima.</div></div></div>
+      <div class="exer-row"><div class="exer-num">2</div><div class="exer-info"><div class="exer-name">Conexión mente-músculo</div><div class="exer-tip">En cada repetición piensa en el músculo que trabajas. Aprieta conscientemente. Esto marca la diferencia en los resultados, especialmente en glúteo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">3</div><div class="exer-info"><div class="exer-name">Progresión gradual</div><div class="exer-tip">Cuando puedas completar todas las series y reps con buena forma, sube 1–2 kg la siguiente semana. Así es como crece el músculo.</div></div></div>
+      <div class="exer-row"><div class="exer-num">4</div><div class="exer-info"><div class="exer-name">Proteína: 1.6–2g por kg de peso corporal</div><div class="exer-tip">Sin suficiente proteína no hay construcción muscular. Tu shake post-gym no es opcional — es parte del entrenamiento.</div></div></div>
+      <div class="exer-row"><div class="exer-num">5</div><div class="exer-info"><div class="exer-name">El dolor muscular es normal, el articular no</div><div class="exer-tip">Glúteos quemados al día siguiente = buena señal. Dolor en rodillas, caderas o espalda baja = para y corrige la técnica.</div></div></div>
     </div>
-
     <div class="exer-block">
-      <div class="exer-section-label">Distribución semanal con tu rutina</div>
-      <div class="exer-row"><div class="exer-num">L</div><div class="exer-info"><div class="exer-name">Lunes — tren superior</div><div class="exer-tip">Pecho, espalda, hombros, brazos. Pierna descansa.</div></div></div>
-      <div class="exer-row"><div class="exer-num">M</div><div class="exer-info"><div class="exer-name">Martes — Día A pierna/glúteo</div><div class="exer-tip">Glúteo posterior. El más fuerte de los tres días.</div></div></div>
-      <div class="exer-row"><div class="exer-num">X</div><div class="exer-info"><div class="exer-name">Miércoles — cardio o tren superior ligero</div><div class="exer-tip">Recuperación activa. No pierna pesada.</div></div></div>
-      <div class="exer-row"><div class="exer-num">J</div><div class="exer-info"><div class="exer-name">Jueves — Día B pierna/glúteo</div><div class="exer-tip">Pierna completa + glúteo lateral.</div></div></div>
-      <div class="exer-row"><div class="exer-num">V</div><div class="exer-info"><div class="exer-name">Viernes — tren superior</div><div class="exer-tip">Brazos, espalda, hombros. Pierna descansa.</div></div></div>
-      <div class="exer-row"><div class="exer-num">S</div><div class="exer-info"><div class="exer-name">Sábado — Día C pierna/glúteo</div><div class="exer-tip">Quads + glúteo. Caminata inclinada opcional.</div></div></div>
-      <div class="exer-row"><div class="exer-num">D</div><div class="exer-info"><div class="exer-name">Domingo — descanso total</div><div class="exer-tip">Planeación, stretching suave si quieres.</div></div></div>
+      <div class="exer-section-label">Resumen semanal</div>
+      <div class="exer-row"><div class="exer-num">L</div><div class="exer-info"><div class="exer-name">Lunes — Pecho + Tríceps</div><div class="exer-tip">Press banca · press inclinado · pec deck · jalones tríceps · extensión tríceps</div></div></div>
+      <div class="exer-row"><div class="exer-num">M</div><div class="exer-info"><div class="exer-name">Martes — Espalda + Bíceps</div><div class="exer-tip">Jalón · remo barra · remo polea · curl barra · curl martillo</div></div></div>
+      <div class="exer-row"><div class="exer-num">X</div><div class="exer-info"><div class="exer-name">Miércoles — Glúteo (día estrella)</div><div class="exer-tip">Abductora · split squat · hip thrust · kickback · peso muerto rumano</div></div></div>
+      <div class="exer-row"><div class="exer-num">J</div><div class="exer-info"><div class="exer-name">Jueves — Hombros + Core</div><div class="exer-tip">Press hombros · elevaciones lat. · rear delt · plancha · crunch · plancha lateral</div></div></div>
+      <div class="exer-row"><div class="exer-num">V</div><div class="exer-info"><div class="exer-name">Viernes — Pierna completa</div><div class="exer-tip">Sentadilla · peso muerto rumano · curl isquio · zancadas · pantorrilla · HIIT</div></div></div>
+      <div class="exer-row"><div class="exer-num">S</div><div class="exer-info"><div class="exer-name">Sábado — Descanso activo</div><div class="exer-tip">Caminata suave, stretching o yoga. Sin pesas.</div></div></div>
+      <div class="exer-row"><div class="exer-num">D</div><div class="exer-info"><div class="exer-name">Domingo — Descanso total</div><div class="exer-tip">Planeación, alimentación, recuperación.</div></div></div>
     </div>
-
     <div class="gym-tip-box">
       <div class="gym-tip-label">Cuándo esperar resultados</div>
-      <div class="gym-tip-text">Semanas 1–4: tu sistema nervioso aprende los movimientos, ganas fuerza rápido. Semanas 5–8: empieza el cambio visual. Semana 12 en adelante: resultados claros si la dieta y la constancia están. La clave es no parar.</div>
+      <div class="gym-tip-text">Semanas 1–4: aprendes los movimientos y ganas fuerza rápido. Semanas 5–8: empieza el cambio visual. Semana 12+: resultados claros con dieta y constancia. La clave es no parar.</div>
     </div>
   </div>
 
